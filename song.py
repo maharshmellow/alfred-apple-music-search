@@ -1,0 +1,33 @@
+# https://www.alfredapp.com/help/workflows/inputs/script-filter/json/
+# need to enable security & privacy > privacy > accessibility > Script Editor (for the Applescript approach)
+
+import sys 
+import json 
+import requests
+
+searchTerm = sys.argv[1:]
+
+api_url = "https://itunes.apple.com/search?term={}&entity=song&limit=20".format(searchTerm)
+
+search_results = requests.get(api_url).json()["results"]
+alfred_results = []
+
+for item in search_results:
+    result = {
+        "title": item["trackName"],
+        "subtitle": "{} - {}".format(item["artistName"], item["collectionName"]),
+        "arg": item["trackViewUrl"].replace("https", "music").replace("/us/", "/ca/") + "&app=music",
+        "autocomplete": "{} {}".format(item["trackName"], item["artistName"]),
+        "icon": {
+            "path": "./icon.png"
+        }
+    }
+    
+    alfred_results.append(result)
+
+
+response = json.dumps({
+    "items": alfred_results
+})
+
+sys.stdout.write(response)
