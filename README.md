@@ -1,6 +1,8 @@
 # Alfred Workflow for Apple Music Search
 This workflow allows you to quickly search for songs through Alfred. 
 
+[Blog Post](https://www.maharsh.net/blog/alfred-workflow-python)
+
 ![Kapture 2021-02-07 at 01 54 28](https://user-images.githubusercontent.com/4590693/107141679-b6e30f00-68e7-11eb-8d39-5ec45641bfa9.gif)
 
 ### Quick Start
